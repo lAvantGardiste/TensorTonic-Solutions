@@ -7,17 +7,17 @@ def _sigmoid(z):
 def train_logistic_regression(X, y, lr=0.1, steps=1000):
     n_samples, n_features = X.shape
     w = np.zeros(n_features)
-    b=0
+    b = 0
 
     for i in range(steps):
-        z = np.dot(X,w)+b
+        z = np.dot(X,w) + b
         p = _sigmoid(z)
 
-        dw = (1 / n_samples) * np.dot(X.T,(p - y))
-        db = (1 / n_samples) * (np.sum(p - y))
-        
-        w = w - lr * dw
-        b = b - lr * db
+        dw = (1 / n_samples) * (np.dot(X.T,(p - y)))
+        db = (1 / n_samples) * np.sum(p - y)
+
+        w -= lr * dw
+        b -= lr * db
 
     return w,b
     
